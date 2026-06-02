@@ -1,0 +1,94 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-nutritionist",
+      "description": "Professional photo of a nutritionist smiling",
+      "imageUrl": "https://images.unsplash.com/photo-1618622127587-3261f2b2f553?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxudXRyaXRpb25pc3QlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjA5MDg5OTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "nutritionist portrait"
+    },
+    {
+      "id": "about-nutritionist",
+      "description": "Nutritionist in a professional setting",
+      "imageUrl": "https://picsum.photos/seed/2/800/800",
+      "imageHint": "nutritionist professional"
+    },
+    {
+      "id": "testimonial-1-before",
+      "description": "Before photo of a client",
+      "imageUrl": "https://images.unsplash.com/photo-1666730140449-fae7b366fe62?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3b21hbiUyMGJlZm9yZXxlbnwwfHx8fDE3NjA4OTM4MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman before"
+    },
+    {
+      "id": "testimonial-1-after",
+      "description": "After photo of a client",
+      "imageUrl": "https://images.unsplash.com/photo-1518104593124-ac2e82a5eb9d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx3b21hbiUyMGFmdGVyfGVufDB8fHx8MTc2MDg5MzgxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman after"
+    },
+    {
+      "id": "testimonial-2-before",
+      "description": "Before photo of a client",
+      "imageUrl": "https://images.unsplash.com/photo-1760207825976-32266f91956b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtYW4lMjBiZWZvcmV8ZW58MHx8fHwxNzYwOTczNTYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man before"
+    },
+    {
+      "id": "testimonial-2-after",
+      "description": "After photo of a client",
+      "imageUrl": "https://images.unsplash.com/photo-1737155398447-c66ead43d58f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtYW4lMjBhZnRlcnxlbnwwfHx8fDE3NjA5NzM1NjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man after"
+    },
+    {
+      "id": "testimonial-3-before",
+      "description": "Before photo of a client",
+      "imageUrl": "https://images.unsplash.com/photo-1586109425767-4ecae4043556?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwZXJzb24lMjBiZWZvcmV8ZW58MHx8fHwxNzYwODkzODEyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person before"
+    },
+    {
+      "id": "testimonial-3-after",
+      "description": "After photo of a client",
+      "imageUrl": "https://images.unsplash.com/photo-1586523222882-7327393aa642?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBhZnRlcnxlbnwwfHx8fDE3NjA4OTM4MTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person after"
+    },
+    {
+      "id": "testimonial-1-avatar",
+      "description": "Happy client portrait",
+      "imageUrl": "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBzbWlsaW5nfGVufDB8fHx8MTc2MDk1NTA4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person smiling"
+    },
+    {
+      "id": "testimonial-2-avatar",
+      "description": "Happy client portrait",
+      "imageUrl": "https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzYwOTE3NDE1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman smiling"
+    },
+    {
+      "id": "testimonial-3-avatar",
+      "description": "Happy client portrait",
+      "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjA5MjE0MDR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "tip-1",
+      "description": "A vibrant and healthy salad bowl",
+      "imageUrl": "https://images.unsplash.com/photo-1490818387583-1baba5e638af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aGVhbHRoeSUyMGZvb2R8ZW58MHx8fHwxNzYwOTM3NTA4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy food"
+    },
+    {
+      "id": "tip-2",
+      "description": "Fresh fruits and vegetables on a table",
+      "imageUrl": "https://images.unsplash.com/photo-1592918489661-b098eb4e343c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZnJlc2glMjBmcnVpdHxlbnwwfHx8fDE3NjA5MzY5MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fresh fruit"
+    },
+    {
+      "id": "tip-3",
+      "description": "A person preparing a healthy meal",
+      "imageUrl": "https://images.unsplash.com/photo-1547928578-bca3e9c5a0ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxoZWFsdGh5JTIwY29va2luZ3xlbnwwfHx8fDE3NjA5NzM1NjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy cooking"
+    },
+    {
+      "id": "ebook-cover",
+      "description": "Cover of a nutrition e-book",
+      "imageUrl": "https://images.unsplash.com/photo-1733945711023-bb707111c16a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxlYm9vayUyMGNvdmVyfGVufDB8fHx8MTc2MDg0NzMwOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ebook cover"
+    }
+  ]
+}
