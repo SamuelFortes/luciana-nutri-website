@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -23,9 +24,11 @@ export function EbookSection() {
             <CardContent className="p-6 text-center">
               <p className="text-lg font-semibold text-muted-foreground">Oferta Especial por Tempo Limitado</p>
               <p className="my-2 text-4xl font-bold text-primary">Apenas R$ 49,90</p>
-              <Button size="lg" className="w-full mt-4">
-                <ShoppingCart className="mr-2 h-5 w-5" />
-                Adquirir Agora
+              <Button size="lg" className="w-full mt-4" asChild>
+                <Link href="/checkout">
+                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  Adquirir Agora
+                </Link>
               </Button>
                <p className="mt-3 text-xs text-muted-foreground">O preço pode aumentar a qualquer momento.</p>
             </CardContent>
