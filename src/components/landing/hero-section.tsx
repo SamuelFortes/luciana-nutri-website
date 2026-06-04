@@ -26,7 +26,7 @@ export function HeroSection() {
         {/* Text side */}
         <div className="flex flex-col items-start space-y-6 text-left">
           {/* Word-by-word title reveal */}
-          <h1 className="font-headline text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="font-headline text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl leading-[1.3]">
             {titleWords.map((word, i) => (
               <motion.span
                 key={i}
