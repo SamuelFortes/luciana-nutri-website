@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -50,9 +51,11 @@ export function EbookSection() {
               </div>
 
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Button size="lg" className="mt-4 w-full">
-                  <ShoppingCart className="mr-2 h-5 w-5" />
-                  Adquirir Agora
+                <Button size="lg" className="mt-4 w-full" asChild>
+                  <Link href="/checkout">
+                    <ShoppingCart className="mr-2 h-5 w-5" />
+                    Adquirir Agora
+                  </Link>
                 </Button>
               </motion.div>
               <p className="mt-3 text-xs text-muted-foreground">O preço pode aumentar a qualquer momento.</p>
