@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { ArrowRight } from "lucide-react";
+import { FadeIn, StaggerContainer, StaggerItem, motion } from "@/components/ui/motion";
 
 const tips = [
   {
@@ -28,44 +31,60 @@ export function TipsSection() {
   return (
     <section id="dicas" className="w-full bg-secondary py-16 md:py-24 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+        <FadeIn className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">Blog & Dicas de Nutrição</h2>
+            <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
+              Blog & Dicas de Nutrição
+            </h2>
             <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               Informações e dicas para enriquecer sua jornada por uma vida mais saudável.
             </p>
           </div>
-        </div>
-        <div className="mx-auto mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        </FadeIn>
+
+        <StaggerContainer className="mx-auto mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {tips.map((tip) => {
             const image = images.find(img => img.id === tip.id);
             return (
-              <Card key={tip.id} className="overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl">
-                 {image && (
-                  <div className="aspect-video overflow-hidden">
-                    <Image
-                      src={image.imageUrl}
-                      alt={tip.title}
-                      width={600}
-                      height={400}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      data-ai-hint={image.imageHint}
-                    />
-                  </div>
-                 )}
-                <CardHeader>
-                  <CardTitle className="font-headline">{tip.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground">{tip.excerpt}</p>
-                   <Link href="#" className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                    Leia mais <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </CardContent>
-              </Card>
+              <StaggerItem key={tip.id}>
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  transition={{ type: "spring", stiffness: 280, damping: 18 }}
+                  className="h-full"
+                >
+                  <Card className="group h-full overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl">
+                    {image && (
+                      <div className="aspect-video overflow-hidden">
+                        <Image
+                          src={image.imageUrl}
+                          alt={tip.title}
+                          width={600}
+                          height={400}
+                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          data-ai-hint={image.imageHint}
+                        />
+                      </div>
+                    )}
+                    <CardHeader>
+                      <CardTitle className="font-headline">{tip.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <p className="text-muted-foreground">{tip.excerpt}</p>
+                      <motion.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 400 }}>
+                        <Link
+                          href="#"
+                          className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+                        >
+                          Leia mais <ArrowRight className="h-4 w-4" />
+                        </Link>
+                      </motion.div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

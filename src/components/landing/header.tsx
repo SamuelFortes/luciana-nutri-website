@@ -8,6 +8,7 @@ import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LogoIcon } from "@/components/icons/logo-icon";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { motion, useScroll, useSpring } from "framer-motion";
 
 const navLinks = [
   { href: "#inicio", label: "Início" },
@@ -21,18 +22,16 @@ const navLinks = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY > 10;
-      if (scrolled !== isScrolled) {
-        setIsScrolled(scrolled);
-      }
+      if (scrolled !== isScrolled) setIsScrolled(scrolled);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [isScrolled]);
 
   const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
@@ -44,6 +43,12 @@ export function Header() {
         isScrolled ? "bg-background/90 shadow-md backdrop-blur-md" : "bg-transparent"
       )}
     >
+      {/* Scroll progress bar */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-[2px] origin-left bg-primary"
+        style={{ scaleX }}
+      />
+
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <Link href="#inicio" className="flex items-center gap-2 text-xl font-bold text-foreground">
           <LogoIcon className="h-7 w-7 text-primary" />
@@ -55,9 +60,10 @@ export function Header() {
               key={link.href}
               href={link.href}
               prefetch={true}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              className="group relative text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
               {link.label}
+              <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-primary transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
         </nav>
