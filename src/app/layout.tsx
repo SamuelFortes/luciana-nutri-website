@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 export const metadata: Metadata = {
   title: 'Luciana Soares Nutricionista',
   description: 'Site profissional para nutricionista.',
+  icons: { icon: '/favicon.svg' },
 };
 
 export default function RootLayout({

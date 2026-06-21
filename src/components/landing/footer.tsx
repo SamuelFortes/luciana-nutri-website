@@ -19,12 +19,12 @@ export function Footer() {
         </div>
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" asChild>
-            <Link href="#" aria-label="WhatsApp">
+            <Link href="https://wa.me/558681039944" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
               <WhatsAppIcon className="h-5 w-5" />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <Link href="#" aria-label="Instagram">
+            <Link href="https://www.instagram.com/nutri.lusoares/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
               <Instagram className="h-5 w-5" />
             </Link>
           </Button>

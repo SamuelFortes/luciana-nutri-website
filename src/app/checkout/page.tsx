@@ -6,7 +6,6 @@ import {
   ShoppingCart,
   CheckCircle,
   Shield,
-  Star,
   ArrowLeft,
   Zap,
   Clock,
@@ -19,7 +18,7 @@ import { FadeIn, StaggerContainer, StaggerItem, FloatAnimation, motion } from "@
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LogoIcon } from "@/components/icons/logo-icon";
 
-const MERCADO_PAGO_LINK = "https://link.mercadopago.com.br/SEU-LINK-AQUI";
+const MERCADO_PAGO_LINK = "https://mpago.la/2As3FZR";
 
 const EBOOK_BENEFITS = [
   "Guia completo com mais de 80 páginas",
@@ -30,23 +29,6 @@ const EBOOK_BENEFITS = [
   "Bônus: Lista de substituições inteligentes",
 ];
 
-const TESTIMONIALS = [
-  {
-    name: "Ana Paula S.",
-    text: "Mudou completamente minha relação com a comida. Recomendo demais!",
-    stars: 5,
-  },
-  {
-    name: "Carlos M.",
-    text: "Prático, direto e sem enrolação. Já apliquei na semana seguinte.",
-    stars: 5,
-  },
-  {
-    name: "Fernanda L.",
-    text: "As receitas são incríveis e fáceis de fazer no dia a dia.",
-    stars: 5,
-  },
-];
 
 const TRUST_BADGES = [
   {
@@ -141,29 +123,6 @@ export default function CheckoutPage() {
               </motion.div>
             </FloatAnimation>
 
-            {/* Estrelas com stagger */}
-            <div className="flex flex-col items-center gap-2">
-              <div className="flex gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.6 + i * 0.1, type: "spring", stiffness: 400 }}
-                  >
-                    <Star className="h-6 w-6 fill-primary text-primary" />
-                  </motion.div>
-                ))}
-              </div>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.2 }}
-                className="text-sm font-medium text-muted-foreground"
-              >
-                +200 leitoras satisfeitas
-              </motion.p>
-            </div>
           </FadeIn>
 
           {/* Detalhes + compra */}
@@ -301,43 +260,6 @@ export default function CheckoutPage() {
         </StaggerContainer>
       </section>
 
-      <div className="h-24 bg-gradient-to-b from-background to-secondary" aria-hidden />
-
-      {/* ── Depoimentos ── */}
-      <section className="bg-secondary py-16 md:py-24">
-        <div className="container mx-auto px-4 md:px-6">
-          <FadeIn className="mb-10 text-center">
-            <h2 className="font-headline text-2xl font-bold text-foreground sm:text-3xl">
-              O que dizem nossas leitoras
-            </h2>
-            <p className="mt-2 text-muted-foreground">
-              Resultados reais de quem já transformou sua alimentação
-            </p>
-          </FadeIn>
-
-          <StaggerContainer className="grid gap-6 md:grid-cols-3">
-            {TESTIMONIALS.map((t) => (
-              <StaggerItem key={t.name}>
-                <motion.div
-                  whileHover={{ y: -6 }}
-                  transition={{ type: "spring", stiffness: 280 }}
-                  className="flex h-full flex-col gap-3 rounded-2xl border border-border bg-card p-6 shadow-md"
-                >
-                  <div className="flex gap-0.5">
-                    {Array.from({ length: t.stars }).map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                    ))}
-                  </div>
-                  <p className="flex-1 text-sm italic text-muted-foreground">"{t.text}"</p>
-                  <p className="text-sm font-semibold text-foreground">{t.name}</p>
-                </motion.div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      <div className="h-24 bg-gradient-to-b from-secondary to-background" aria-hidden />
 
       {/* ── Footer ── */}
       <footer className="py-10 text-center text-xs text-muted-foreground">

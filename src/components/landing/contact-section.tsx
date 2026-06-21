@@ -10,8 +10,8 @@ import Link from "next/link";
 import { FadeIn, StaggerContainer, StaggerItem, motion } from "@/components/ui/motion";
 
 const socialLinks = [
-  { icon: WhatsAppIcon, label: "WhatsApp", href: "#" },
-  { icon: Instagram, label: "Instagram", href: "#" },
+  { icon: WhatsAppIcon, label: "WhatsApp", href: "https://wa.me/558681039944" },
+  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/nutri.lusoares/" },
   { icon: Mail, label: "Email", href: "#" },
 ];
 
@@ -40,7 +40,7 @@ export function ContactSection() {
               {socialLinks.map(({ icon: Icon, label, href }) => (
                 <motion.div key={label} whileHover={{ scale: 1.15, y: -3 }} whileTap={{ scale: 0.95 }}>
                   <Button variant="outline" size="icon" asChild>
-                    <Link href={href} aria-label={label}>
+                    <Link href={href} aria-label={label} target="_blank" rel="noopener noreferrer">
                       <Icon className="h-5 w-5" />
                     </Link>
                   </Button>
