@@ -1,32 +1,11 @@
-"use client";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
+import { getRecommendedArticles } from "@/lib/recommended-articles";
+import { RecommendedArticleCard } from "@/components/landing/recommended-article-card";
 
-import Image from "next/image";
-import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { ArrowRight } from "lucide-react";
-import { FadeIn, StaggerContainer, StaggerItem, motion } from "@/components/ui/motion";
+export async function TipsSection() {
+  const articles = await getRecommendedArticles();
 
-const tips = [
-  {
-    id: "tip-1",
-    title: "5 Mitos sobre Dietas Detox",
-    excerpt: "Descubra a verdade por trás das dietas detox e como realmente limpar seu organismo.",
-  },
-  {
-    id: "tip-2",
-    title: "A Importância da Hidratação",
-    excerpt: "Saiba por que beber água é crucial para sua saúde e quantas vezes você deve se hidratar.",
-  },
-  {
-    id: "tip-3",
-    title: "Lanches Saudáveis para o Dia a Dia",
-    excerpt: "Ideias práticas e deliciosas para manter a energia entre as refeições principais.",
-  },
-];
-
-export function TipsSection() {
-  const images = PlaceHolderImages;
+  if (articles.length === 0) return null;
 
   return (
     <section id="dicas" className="w-full bg-secondary py-16 md:py-24 lg:py-32">
@@ -34,56 +13,20 @@ export function TipsSection() {
         <FadeIn className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
-              Blog & Dicas de Nutrição
+              Leituras Recomendadas
             </h2>
             <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Informações e dicas para enriquecer sua jornada por uma vida mais saudável.
+              Artigos de fontes confiáveis, selecionados por Luciana — conteúdo de terceiros, não de autoria dela.
             </p>
           </div>
         </FadeIn>
 
         <StaggerContainer className="mx-auto mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {tips.map((tip) => {
-            const image = images.find(img => img.id === tip.id);
-            return (
-              <StaggerItem key={tip.id}>
-                <motion.div
-                  whileHover={{ y: -6 }}
-                  transition={{ type: "spring", stiffness: 280, damping: 18 }}
-                  className="h-full"
-                >
-                  <Card className="group h-full overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl">
-                    {image && (
-                      <div className="aspect-video overflow-hidden">
-                        <Image
-                          src={image.imageUrl}
-                          alt={tip.title}
-                          width={600}
-                          height={400}
-                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          data-ai-hint={image.imageHint}
-                        />
-                      </div>
-                    )}
-                    <CardHeader>
-                      <CardTitle className="font-headline">{tip.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <p className="text-muted-foreground">{tip.excerpt}</p>
-                      <motion.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 400 }}>
-                        <Link
-                          href="#"
-                          className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
-                        >
-                          Leia mais <ArrowRight className="h-4 w-4" />
-                        </Link>
-                      </motion.div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </StaggerItem>
-            );
-          })}
+          {articles.map((article) => (
+            <StaggerItem key={article.link}>
+              <RecommendedArticleCard article={article} />
+            </StaggerItem>
+          ))}
         </StaggerContainer>
       </div>
     </section>

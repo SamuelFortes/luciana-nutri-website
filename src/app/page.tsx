@@ -8,6 +8,8 @@ import { EbookSection } from "@/components/landing/ebook-section";
 import { ContactSection } from "@/components/landing/contact-section";
 import { Footer } from "@/components/landing/footer";
 
+export const revalidate = 3600;
+
 function Fade({ from, to }: { from: string; to: string }) {
   return <div className={`h-28 bg-gradient-to-b ${from} ${to}`} aria-hidden />;
 }
