@@ -1,7 +1,9 @@
 "use client";
 
+import { Suspense, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import {
   ShoppingCart,
   CheckCircle,
@@ -10,15 +12,59 @@ import {
   Zap,
   Clock,
   RefreshCw,
+  Loader2,
+  AlertTriangle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { FadeIn, StaggerContainer, StaggerItem, FloatAnimation, motion } from "@/components/ui/motion";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LogoIcon } from "@/components/icons/logo-icon";
+import { useToast } from "@/hooks/use-toast";
 
-const MERCADO_PAGO_LINK = "https://mpago.la/2As3FZR";
+type PaymentStatus = "success" | "pending" | "failure";
+
+const STATUS_MESSAGES: Record<PaymentStatus, { title: string; description: string }> = {
+  success: {
+    title: "Pagamento aprovado!",
+    description: "Você vai receber o e-book por e-mail em até 5 minutos. Se não chegar, confira a caixa de spam.",
+  },
+  pending: {
+    title: "Pagamento em análise",
+    description: "Assim que for aprovado (Pix costuma ser instantâneo, boleto pode levar até 3 dias úteis), você recebe o e-book por e-mail.",
+  },
+  failure: {
+    title: "Pagamento não concluído",
+    description: "Algo deu errado ou o pagamento foi cancelado. Você pode tentar novamente abaixo.",
+  },
+};
+
+function StatusBanner() {
+  const searchParams = useSearchParams();
+  const status = searchParams.get("status") as PaymentStatus | null;
+  if (!status || !(status in STATUS_MESSAGES)) return null;
+
+  const { title, description } = STATUS_MESSAGES[status];
+
+  return (
+    <FadeIn className="container mx-auto px-4 pt-6 md:px-6">
+      <Alert
+        variant={status === "failure" ? "destructive" : "default"}
+        className={status === "success" ? "border-primary/50 [&>svg]:text-primary" : ""}
+      >
+        {status === "failure" ? (
+          <AlertTriangle className="h-4 w-4" />
+        ) : (
+          <CheckCircle className="h-4 w-4" />
+        )}
+        <AlertTitle>{title}</AlertTitle>
+        <AlertDescription>{description}</AlertDescription>
+      </Alert>
+    </FadeIn>
+  );
+}
 
 const EBOOK_BENEFITS = [
   "Guia completo com mais de 80 páginas",
@@ -49,7 +95,37 @@ const TRUST_BADGES = [
 ];
 
 export default function CheckoutPage() {
+  return (
+    <Suspense fallback={null}>
+      <CheckoutPageContent />
+    </Suspense>
+  );
+}
+
+function CheckoutPageContent() {
   const ebookImage = PlaceHolderImages.find((img) => img.id === "ebook-cover");
+  const [isRedirecting, setIsRedirecting] = useState(false);
+  const { toast } = useToast();
+
+  async function handleCheckout() {
+    setIsRedirecting(true);
+    try {
+      const response = await fetch("/api/create-preference", { method: "POST" });
+      if (!response.ok) throw new Error("request-failed");
+
+      const { initPoint } = await response.json();
+      if (!initPoint) throw new Error("missing-init-point");
+
+      window.location.href = initPoint;
+    } catch {
+      setIsRedirecting(false);
+      toast({
+        title: "Não foi possível iniciar o pagamento",
+        description: "Tente novamente em instantes ou fale com a gente pelo WhatsApp.",
+        variant: "destructive",
+      });
+    }
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -82,6 +158,8 @@ export default function CheckoutPage() {
           </div>
         </div>
       </header>
+
+      <StatusBanner />
 
       {/* ── Hero ── */}
       <section className="relative overflow-hidden bg-secondary">
@@ -207,10 +285,15 @@ export default function CheckoutPage() {
                     <Button
                       size="lg"
                       className="relative z-10 w-full text-base font-bold"
-                      onClick={() => window.open(MERCADO_PAGO_LINK, "_blank")}
+                      onClick={handleCheckout}
+                      disabled={isRedirecting}
                     >
-                      <ShoppingCart className="mr-2 h-5 w-5" />
-                      Comprar com Mercado Pago
+                      {isRedirecting ? (
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      ) : (
+                        <ShoppingCart className="mr-2 h-5 w-5" />
+                      )}
+                      {isRedirecting ? "Redirecionando..." : "Comprar com Mercado Pago"}
                     </Button>
                   </motion.div>
                 </div>
