@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LogoIcon } from "@/components/icons/logo-icon";
@@ -83,6 +84,9 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] bg-background">
+              <VisuallyHidden asChild>
+                <SheetTitle>Menu de navegação</SheetTitle>
+              </VisuallyHidden>
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8">
                   <Link href="#inicio" className="flex items-center gap-2 text-xl font-bold" onClick={closeMobileMenu}>

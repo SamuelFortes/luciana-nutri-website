@@ -15,7 +15,7 @@ export function EbookSection() {
     <section id="ebook" className="w-full py-16 md:py-24 lg:py-32 bg-secondary">
       <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2 md:px-6">
         {/* Text content slides from left */}
-        <FadeIn direction="left" className="flex flex-col justify-center space-y-6">
+        <FadeIn direction="left" className="order-2 flex flex-col justify-center space-y-6 md:order-none">
           <div className="space-y-4">
             <h2 className="font-headline text-3xl font-bold tracking-tighter text-foreground sm:text-4xl md:text-5xl">
               Desvende os Segredos da Nutrição
@@ -64,7 +64,7 @@ export function EbookSection() {
         </FadeIn>
 
         {/* Floating book image */}
-        <FadeIn direction="right" className="relative mx-auto w-full max-w-sm">
+        <FadeIn direction="right" className="order-1 relative mx-auto w-full max-w-sm md:order-none">
           {ebookImage && (
             <FloatAnimation>
               <motion.div
