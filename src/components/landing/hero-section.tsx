@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { motion } from "@/components/ui/motion";
+import { getWhatsAppLink, SCHEDULE_CONSULTATION_MESSAGE } from "@/lib/whatsapp";
 
 const titleWords = ["Transforme", "sua", "relação", "com", "a", "comida."];
 
@@ -66,7 +67,9 @@ export function HeroSection() {
               transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
             />
             <Button size="lg" asChild className="relative z-10">
-              <Link href="#contato">Agende sua Consulta</Link>
+              <Link href={getWhatsAppLink(SCHEDULE_CONSULTATION_MESSAGE)} target="_blank" rel="noopener noreferrer">
+                Agende sua Consulta
+              </Link>
             </Button>
           </motion.div>
         </div>

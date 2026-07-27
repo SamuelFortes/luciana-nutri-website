@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { LogoIcon } from "@/components/icons/logo-icon";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { getWhatsAppLink, SCHEDULE_CONSULTATION_MESSAGE } from "@/lib/whatsapp";
 
 const navLinks = [
   { href: "#inicio", label: "Início" },
@@ -71,7 +72,9 @@ export function Header() {
         <div className="hidden items-center gap-4 md:flex">
           <ThemeToggle />
           <Button asChild>
-            <Link href="#contato">Agende sua Consulta</Link>
+            <Link href={getWhatsAppLink(SCHEDULE_CONSULTATION_MESSAGE)} target="_blank" rel="noopener noreferrer">
+              Agende sua Consulta
+            </Link>
           </Button>
         </div>
         <div className="flex items-center gap-2 md:hidden">
@@ -107,7 +110,14 @@ export function Header() {
                   ))}
                 </nav>
                 <Button asChild className="mt-8 w-full">
-                  <Link href="#contato" onClick={closeMobileMenu}>Agende sua Consulta</Link>
+                  <Link
+                    href={getWhatsAppLink(SCHEDULE_CONSULTATION_MESSAGE)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={closeMobileMenu}
+                  >
+                    Agende sua Consulta
+                  </Link>
                 </Button>
               </div>
             </SheetContent>
