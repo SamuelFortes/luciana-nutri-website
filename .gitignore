@@ -20,6 +20,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
 # next
 next-env.d.ts
 tsconfig.tsbuildinfo
