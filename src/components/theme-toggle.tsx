@@ -37,7 +37,7 @@ export function ThemeToggle() {
       size="icon"
       onClick={toggleTheme}
       aria-label="Alternar tema"
-      className="h-10 w-10 overflow-hidden rounded-full"
+      className="h-11 w-11 overflow-hidden rounded-full"
     >
       <AnimatePresence mode="wait" initial={false}>
         {theme === "light" ? (

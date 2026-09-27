@@ -1,101 +1,67 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { motion } from "@/components/ui/motion";
+import { FadeIn } from "@/components/ui/motion";
 import { getWhatsAppLink, SCHEDULE_CONSULTATION_MESSAGE } from "@/lib/whatsapp";
-
-const titleWords = ["Transforme", "sua", "relação", "com", "a", "comida."];
 
 export function HeroSection() {
   return (
-    <section id="inicio" className="relative w-full overflow-hidden bg-secondary">
-      {/* Animated gradient blobs */}
-      <motion.div
-        className="pointer-events-none absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-primary/20 blur-[120px]"
-        animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-accent/40 blur-[100px]"
-        animate={{ scale: [1.1, 1, 1.1], opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-      />
-
-      <div className="container mx-auto grid min-h-[calc(100vh-5rem)] items-center gap-12 px-4 md:grid-cols-2 md:px-6">
-        {/* Text side */}
-        <div className="flex flex-col items-start space-y-6 text-left">
-          {/* Word-by-word title reveal */}
-          <h1 className="font-headline text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl leading-[1.3]">
-            {titleWords.map((word, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 32 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.15 + i * 0.1,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="mr-[0.28em] inline-block"
-              >
-                {word}
-              </motion.span>
-            ))}
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.85, ease: "easeOut" }}
-            className="max-w-[600px] text-muted-foreground md:text-xl"
+    <section id="inicio" className="relative z-10 w-full overflow-visible bg-background">
+      <div className="container relative mx-auto min-h-[calc(100vh-5rem)] px-4 py-16 md:px-6">
+        <div className="flex min-h-[calc(100vh-8rem)] flex-col justify-center gap-16 md:flex-row md:items-center md:justify-center md:gap-4 lg:gap-10">
+          {/* Text side */}
+          <FadeIn
+            className="relative z-20 flex max-w-xl flex-1 flex-col items-start space-y-5 text-left"
+            direction="up"
           >
-            Descubra o prazer de uma alimentação saudável e equilibrada, sem restrições e com foco no seu bem-estar.
-          </motion.p>
+            <h1 className="font-headline text-5xl font-bold leading-[1.05] tracking-tighter text-foreground sm:text-6xl md:text-7xl">
+              Transforme sua relação com a comida.
+            </h1>
 
-          {/* CTA with pulse ring */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.05, ease: "easeOut" }}
-            className="relative"
-          >
-            <motion.div
-              className="absolute inset-0 rounded-full bg-primary/40"
-              animate={{ scale: [1, 1.55, 1], opacity: [0.6, 0, 0.6] }}
-              transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
-            />
-            <Button size="lg" asChild className="relative z-10">
+            <p className="max-w-[440px] font-body text-lg text-muted-foreground md:text-xl">
+              Descubra o prazer de uma alimentação saudável e equilibrada, sem restrições e com foco no seu bem-estar.
+            </p>
+
+            <Button size="lg" asChild>
               <Link href={getWhatsAppLink(SCHEDULE_CONSULTATION_MESSAGE)} target="_blank" rel="noopener noreferrer">
                 Agende sua Consulta
               </Link>
             </Button>
-          </motion.div>
-        </div>
+          </FadeIn>
 
-        {/* Floating image side */}
-        <div className="relative flex h-full min-h-[50vh] items-center justify-center">
-          <motion.div
-            initial={{ opacity: 0, y: 60, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative h-[80vh] w-full max-w-md"
+          {/* Image side — a solid color block sits behind the photo, offset up-left so the
+              two overlap instead of floating separately in empty cream; the photo itself
+              bleeds past the section's own bottom edge into About on desktop (z-10 section
+              vs About's z-0). Pulled left on desktop so it closes the dead space instead of
+              stranding the text block on an island. */}
+          <FadeIn
+            direction="right"
+            className="relative z-10 mx-auto w-full max-w-md shrink-0"
           >
-            <motion.div
-              animate={{ y: [0, -16, 0] }}
-              transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-              className="relative h-full w-full overflow-hidden rounded-t-full"
-            >
-              <Image
-                src="/images/hero-luciana.jpg"
-                alt="Luciana Soares Nutricionista"
-                fill
-                className="object-cover object-top"
-                priority
-              />
-            </motion.div>
-          </motion.div>
+            <div
+              aria-hidden
+              className="absolute -left-6 -top-6 z-0 h-[82%] w-[88%] rounded-[2.5rem] bg-secondary md:-left-10 md:-top-8 md:h-[78%] md:w-[82%]"
+            />
+            <div className="relative z-10 h-[62vh] min-h-[420px] w-full md:-mb-20 md:h-[calc(62vh+5rem)]">
+              <div className="relative h-full w-full overflow-hidden rounded-t-full rounded-br-[3rem]">
+                <Image
+                  src="/images/hero-luciana.jpg"
+                  alt="Retrato de Luciana Soares, nutricionista"
+                  fill
+                  className="object-cover object-[50%_12%]"
+                  priority
+                />
+                {/* Warm vignette — the source photo has a cold gray studio backdrop;
+                    multiply-blending a terracota gradient over it (clear at the face,
+                    fully warmed by the edges) grades the gray toward the page's own
+                    palette instead of leaving a mismatched rectangle of gray. */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_32%,transparent_16%,hsl(var(--primary)/0.55)_60%,hsl(var(--primary)/0.92)_100%)] mix-blend-multiply"
+                />
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </div>
     </section>

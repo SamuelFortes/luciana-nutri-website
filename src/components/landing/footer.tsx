@@ -1,38 +1,31 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Instagram, Mail } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { LogoIcon } from "@/components/icons/logo-icon";
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-border/40 bg-background py-8">
-      <div className="container mx-auto flex flex-col items-center justify-between gap-6 px-4 text-center md:flex-row md:text-left">
-        <div className="flex flex-col items-center gap-2 md:items-start">
-           <Link href="#inicio" className="flex items-center gap-2 text-xl font-bold text-foreground">
-            <LogoIcon className="h-7 w-7 text-primary" />
-            <span className="font-headline">LucianaNutri</span>
+    <footer className="w-full border-t border-foreground/10 bg-background py-12">
+      <div className="container mx-auto flex flex-col items-center justify-between gap-8 px-4 text-center md:flex-row md:text-left">
+        <div className="flex flex-col items-center gap-4 md:items-start">
+           <Link href="#inicio" className="flex items-center gap-3 text-2xl font-bold text-foreground">
+            <LogoIcon className="h-8 w-8 text-primary" />
+            <span className="font-headline tracking-tight">LucianaNutri</span>
           </Link>
-          <p className="text-sm text-muted-foreground">
+          <p className="font-body text-sm text-foreground/70">
             © {new Date().getFullYear()} Luciana Soares. Todos os direitos reservados.
           </p>
         </div>
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="https://wa.me/558681039944" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon className="h-5 w-5" />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="https://www.instagram.com/nutri.lusoares/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-              <Instagram className="h-5 w-5" />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="#" aria-label="Email">
-              <Mail className="h-5 w-5" />
-            </Link>
-          </Button>
+        <div className="flex items-center gap-6">
+          <Link href="https://wa.me/558681039944" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer" className="text-foreground/70 transition-colors hover:text-primary">
+            <WhatsAppIcon className="h-6 w-6" />
+          </Link>
+          <Link href="https://www.instagram.com/nutri.lusoares/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="text-foreground/70 transition-colors hover:text-primary">
+            <Instagram className="h-6 w-6" />
+          </Link>
+          <Link href="#" aria-label="Email" className="text-foreground/70 transition-colors hover:text-primary">
+            <Mail className="h-6 w-6" />
+          </Link>
         </div>
       </div>
     </footer>

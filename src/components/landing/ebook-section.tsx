@@ -1,88 +1,64 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { ShoppingCart, Sparkles } from "lucide-react";
-import { FadeIn, FloatAnimation, motion } from "@/components/ui/motion";
+import { ShoppingCart } from "lucide-react";
+import { FadeIn } from "@/components/ui/motion";
 
 export function EbookSection() {
   const ebookImage = PlaceHolderImages.find((img) => img.id === "ebook-cover");
 
   return (
-    <section id="ebook" className="w-full py-16 md:py-24 lg:py-32 bg-secondary">
+    <section id="ebook" className="relative z-0 w-full bg-primary py-20 dark:bg-[#7A3510] md:py-28 lg:py-32">
       <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2 md:px-6">
-        {/* Text content slides from left */}
-        <FadeIn direction="left" className="order-2 flex flex-col justify-center space-y-6 md:order-none">
+        {/* Mockup — left */}
+        <FadeIn direction="right" className="relative mx-auto w-full max-w-sm">
+          {ebookImage && (
+            <div
+              className="aspect-[3/4] overflow-hidden rounded-xl"
+              style={{ boxShadow: "0 24px 48px -16px rgb(36 20 8 / 0.45)" }}
+            >
+              <Image
+                src={ebookImage.imageUrl}
+                alt="Capa do e-book de nutrição de Luciana Soares"
+                width={600}
+                height={800}
+                className="h-full w-full object-cover"
+                data-ai-hint={ebookImage.imageHint}
+              />
+            </div>
+          )}
+        </FadeIn>
+
+        {/* Pitch and price — right */}
+        <FadeIn direction="left" className="flex flex-col justify-center space-y-6 text-primary-foreground dark:text-foreground">
           <div className="space-y-4">
-            <h2 className="font-headline text-3xl font-bold tracking-tighter text-foreground sm:text-4xl md:text-5xl">
+            <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
               Desvende os Segredos da Nutrição
             </h2>
-            <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed">
+            <p className="max-w-[560px] font-body text-primary-foreground/85 dark:text-foreground/85 md:text-lg">
               Meu novo e-book é o guia definitivo para você transformar sua alimentação e alcançar seus objetivos de forma saudável e prazerosa. Chega de dietas restritivas!
             </p>
           </div>
 
-          {/* Price card with shimmer glow */}
-          <Card className="relative overflow-hidden bg-background shadow-lg">
-            {/* Shimmer sweep */}
-            <motion.div
-              className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-primary/10 to-transparent"
-              animate={{ translateX: ["−100%", "200%"] }}
-              transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3, ease: "easeInOut" }}
-            />
-            <CardContent className="p-6 text-center">
-              <div className="flex items-center justify-center gap-2 text-lg font-semibold text-muted-foreground">
-                <Sparkles className="h-4 w-4 text-primary" />
-                Oferta Especial por Tempo Limitado
-                <Sparkles className="h-4 w-4 text-primary" />
-              </div>
+          <div className="space-y-1">
+            <p className="font-body text-sm font-medium uppercase tracking-wide text-primary-foreground/85 dark:text-foreground/85">
+              Oferta Especial por Tempo Limitado
+            </p>
+            <p className="font-headline text-5xl font-bold md:text-6xl">Apenas R$ 49,90</p>
+          </div>
 
-              {/* Pulsing price */}
-              <div className="relative my-3 inline-block">
-                <motion.div
-                  className="absolute inset-0 rounded-xl bg-primary/20 blur-md"
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.9, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <p className="relative text-4xl font-bold text-primary">Apenas R$ 49,90</p>
-              </div>
-
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Button size="lg" className="mt-4 w-full" asChild>
-                  <Link href="/checkout">
-                    <ShoppingCart className="mr-2 h-5 w-5" />
-                    Adquirir Agora
-                  </Link>
-                </Button>
-              </motion.div>
-              <p className="mt-3 text-xs text-muted-foreground">O preço pode aumentar a qualquer momento.</p>
-            </CardContent>
-          </Card>
-        </FadeIn>
-
-        {/* Floating book image */}
-        <FadeIn direction="right" className="order-1 relative mx-auto w-full max-w-sm md:order-none">
-          {ebookImage && (
-            <FloatAnimation>
-              <motion.div
-                whileHover={{ rotate: -3, scale: 1.04 }}
-                transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                className="aspect-[3/4] overflow-hidden rounded-xl shadow-2xl"
-              >
-                <Image
-                  src={ebookImage.imageUrl}
-                  alt={ebookImage.description}
-                  width={600}
-                  height={800}
-                  className="h-full w-full object-cover"
-                  data-ai-hint={ebookImage.imageHint}
-                />
-              </motion.div>
-            </FloatAnimation>
-          )}
+          <div>
+            <Button size="lg" variant="secondary" asChild>
+              <Link href="/checkout">
+                <ShoppingCart className="mr-2 h-5 w-5" />
+                Adquirir Agora
+              </Link>
+            </Button>
+            <p className="mt-3 font-body text-xs text-primary-foreground/85 dark:text-foreground/85">
+              O preço pode aumentar a qualquer momento.
+            </p>
+          </div>
         </FadeIn>
       </div>
     </section>

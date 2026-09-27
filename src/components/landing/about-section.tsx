@@ -1,88 +1,60 @@
-"use client";
-
 import Image from "next/image";
-import { Card } from "@/components/ui/card";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
-import { useRef, useEffect, useState } from "react";
-import { useInView } from "framer-motion";
 
 const stats = [
-  { value: 500, suffix: "+", label: "Pacientes Atendidos" },
-  { value: 5, suffix: "+", label: "Anos de Experiência" },
-  { value: 100, suffix: "%", label: "Planos Personalizados" },
+  { value: "500+", label: "Pacientes Atendidos" },
+  { value: "5+", label: "Anos de Experiência" },
+  { value: "100%", label: "Planos Personalizados" },
 ];
-
-function Counter({ target, suffix }: { target: number; suffix: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (!isInView) return;
-    let start = 0;
-    const duration = 1800;
-    const step = 16;
-    const increment = target / (duration / step);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, step);
-    return () => clearInterval(timer);
-  }, [isInView, target]);
-
-  return (
-    <span ref={ref} className="font-headline text-3xl font-bold text-primary">
-      {count}
-      {suffix}
-    </span>
-  );
-}
 
 export function AboutSection() {
   return (
-    <section id="sobre" className="w-full py-16 md:py-24 lg:py-32">
+    <section id="sobre" className="relative z-0 w-full bg-secondary py-20 md:py-28 lg:py-32">
       <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2 md:px-6">
-        {/* Image slides in from left */}
+        {/* Image — left, per the Z-pattern reversal from the Hero */}
         <FadeIn direction="left" className="relative mx-auto w-full max-w-md">
-          <div className="aspect-square overflow-hidden rounded-xl shadow-lg">
+          <div className="relative aspect-square overflow-hidden rounded-xl">
             <Image
               src="/images/about-luciana.jpg"
-              alt="Luciana Soares Nutricionista"
+              alt="Luciana Soares trabalhando em seu consultório"
               width={800}
               height={800}
-              className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+              className="h-full w-full object-cover"
+            />
+            {/* Same warm-wash treatment as the Hero, tuned lighter: unifies the two
+                photos' color temperature against the cooler tones of the source room. */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_40%,transparent_55%,hsl(var(--secondary)/0.35)_100%)]"
             />
           </div>
         </FadeIn>
 
-        {/* Text slides in from right */}
-        <FadeIn direction="right" className="flex flex-col justify-center space-y-4">
-          <div className="space-y-2">
+        {/* Text — right */}
+        <FadeIn direction="right" className="flex flex-col justify-center space-y-6">
+          <div className="space-y-4">
             <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
               Sobre Mim
             </h2>
-            <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            <p className="max-w-[65ch] font-body text-muted-foreground md:text-lg">
               Sou Luciana Soares, nutricionista apaixonada por ajudar pessoas a encontrarem o equilíbrio e o prazer na alimentação. Minha missão é guiar você em uma jornada de autoconhecimento e saúde, com uma abordagem humanizada e sem julgamentos.
             </p>
-          </div>
-          <Card className="bg-card p-6">
-            <p className="text-card-foreground">
+            <p className="max-w-[65ch] font-body text-muted-foreground md:text-lg">
               Com formação em Nutrição e especialização em comportamento alimentar, acredito que comer bem vai além de contar calorias. Trata-se de nutrir o corpo e a mente, respeitando suas individualidades e seu estilo de vida. Vamos juntos construir hábitos saudáveis e duradouros.
             </p>
-          </Card>
+          </div>
 
-          {/* Stats counters */}
-          <StaggerContainer className="grid grid-cols-3 gap-4 pt-2" delay={0.2}>
+          {/* Stats — hairlines and whitespace, never boxed cards */}
+          <StaggerContainer className="grid grid-cols-3 gap-6 pt-4">
             {stats.map((stat) => (
               <StaggerItem key={stat.label}>
-                <div className="flex flex-col items-center rounded-xl bg-secondary p-4 text-center">
-                  <Counter target={stat.value} suffix={stat.suffix} />
-                  <span className="mt-1 text-xs text-muted-foreground">{stat.label}</span>
+                <div className="border-t border-foreground/20 pt-3">
+                  <span className="block font-headline text-2xl font-bold text-primary sm:text-3xl">
+                    {stat.value}
+                  </span>
+                  <span className="mt-1 block text-xs text-muted-foreground sm:text-sm">
+                    {stat.label}
+                  </span>
                 </div>
               </StaggerItem>
             ))}
