@@ -31,7 +31,7 @@ export function HeroSection() {
             <div className="relative h-full w-full overflow-hidden rounded-t-full">
               <Image
                 src="/images/hero-luciana.jpg"
-                alt="Luciana Soares Nutricionista"
+                alt="Retrato de Luciana Soares, nutricionista"
                 fill
                 className="object-cover object-top"
                 priority

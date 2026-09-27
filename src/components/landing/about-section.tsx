@@ -16,7 +16,7 @@ export function AboutSection() {
           <div className="aspect-square overflow-hidden rounded-xl">
             <Image
               src="/images/about-luciana.jpg"
-              alt="Luciana Soares Nutricionista"
+              alt="Luciana Soares trabalhando em seu consultório"
               width={800}
               height={800}
               className="h-full w-full object-cover"
