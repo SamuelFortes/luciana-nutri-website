@@ -1,13 +1,20 @@
 import type {Metadata} from 'next';
-import { Literata } from 'next/font/google';
+import { Lora, Raleway } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
-const literata = Literata({
+const lora = Lora({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['500', '600', '700'],
   style: ['normal', 'italic'],
-  variable: '--font-literata',
+  variable: '--font-lora',
+  display: 'swap',
+});
+
+const raleway = Raleway({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-raleway',
   display: 'swap',
 });
 
@@ -45,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={literata.variable}>
+    <html lang="pt-BR" className={`${lora.variable} ${raleway.variable}`}>
       <body className="font-body antialiased">
         {children}
         <Toaster />

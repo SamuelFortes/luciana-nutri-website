@@ -4,65 +4,79 @@
 
 @layer base {
   :root {
-    --background: 60 56% 91%;
-    --foreground: 20 14% 4%;
+    /* Mesa Farta — light. Ver DESIGN.md para papéis e verificação de contraste. */
+    --background: 48 100% 96%;
+    --foreground: 24 51% 15%;
 
-    --card: 60 50% 95%;
-    --card-foreground: 20 14% 4%;
+    --card: 45 100% 98%;
+    --card-foreground: 24 51% 15%;
 
-    --popover: 60 50% 95%;
-    --popover-foreground: 20 14% 4%;
+    --popover: 45 100% 98%;
+    --popover-foreground: 24 51% 15%;
 
-    --primary: 33 100% 63%;
-    --primary-foreground: 20 14% 4%;
+    --primary: 15 79% 34%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 120 30% 90%;
-    --secondary-foreground: 120 25% 15%;
+    --secondary: 41 71% 84%;
+    --secondary-foreground: 24 51% 15%;
 
-    --muted: 120 30% 92%;
-    --muted-foreground: 20 14% 35%;
+    --muted: 39 63% 89%;
+    --muted-foreground: 29 24% 34%;
 
-    --accent: 120 30% 88%;
-    --accent-foreground: 120 25% 10%;
+    --accent: 35 84% 90%;
+    --accent-foreground: 24 51% 15%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    
-    --border: 60 30% 80%;
-    --input: 60 30% 85%;
-    --ring: 33 100% 63%;
-    
+    --destructive: 0 74% 42%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 38 53% 81%;
+    --input: 38 53% 81%;
+    --ring: 15 79% 34%;
+
+    --chart-1: 15 79% 34%;
+    --chart-2: 161 94% 30%;
+    --chart-3: 17 88% 40%;
+    --chart-4: 32 95% 44%;
+    --chart-5: 22 78% 26%;
+
     --radius: 0.8rem;
   }
 
   .dark {
-    --background: 20 14% 4%;
-    --foreground: 60 56% 91%;
+    /* Mesa Farta — dark. Tradução em marrom-expresso profundo + terracota, nunca cinza genérico. */
+    --background: 26 64% 9%;
+    --foreground: 34 79% 93%;
 
-    --card: 20 14% 6%;
-    --card-foreground: 60 56% 91%;
+    --card: 27 43% 16%;
+    --card-foreground: 34 79% 93%;
 
-    --popover: 20 14% 6%;
-    --popover-foreground: 60 56% 91%;
+    --popover: 27 43% 16%;
+    --popover-foreground: 34 79% 93%;
 
-    --primary: 33 100% 63%;
-    --primary-foreground: 20 14% 4%;
+    --primary: 25 88% 47%;
+    --primary-foreground: 26 64% 9%;
 
-    --secondary: 120 25% 15%;
-    --secondary-foreground: 120 30% 90%;
+    --secondary: 29 40% 21%;
+    --secondary-foreground: 34 79% 93%;
 
-    --muted: 20 14% 10%;
-    --muted-foreground: 60 50% 70%;
+    --muted: 30 55% 13%;
+    --muted-foreground: 32 38% 76%;
 
-    --accent: 20 14% 12%;
-    --accent-foreground: 60 56% 91%;
+    --accent: 29 40% 21%;
+    --accent-foreground: 34 79% 93%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 34 79% 93%;
 
-    --border: 20 14% 15%;
-    --input: 20 14% 15%;
-    --ring: 33 100% 70%;
+    --border: 29 40% 21%;
+    --input: 29 40% 21%;
+    --ring: 27 96% 61%;
+
+    --chart-1: 25 88% 47%;
+    --chart-2: 158 64% 52%;
+    --chart-3: 27 96% 61%;
+    --chart-4: 32 95% 55%;
+    --chart-5: 34 79% 93%;
   }
 }
 
