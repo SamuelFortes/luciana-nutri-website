@@ -2,9 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
-import Image from "next/image";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { FadeIn } from "@/components/ui/motion";
 import { Quote } from "lucide-react";
 
@@ -33,95 +31,52 @@ const testimonials = [
 ];
 
 export function TestimonialsSection() {
-  const images = PlaceHolderImages;
-
   return (
-    <section id="depoimentos" className="w-full py-16 md:py-24 lg:py-32">
+    <section id="depoimentos" className="w-full bg-secondary py-20 md:py-32">
       <div className="container mx-auto px-4 md:px-6">
-        <FadeIn className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
+        <FadeIn className="flex flex-col items-center justify-center space-y-6 text-center">
+          <div className="space-y-4">
+            <h2 className="font-headline text-3xl font-bold tracking-tighter md:text-5xl text-foreground">
               O que meus pacientes dizem
             </h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            <p className="max-w-[900px] mx-auto font-body text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               Histórias de transformação e bem-estar que me inspiram todos os dias.
             </p>
           </div>
         </FadeIn>
 
-        <FadeIn delay={0.2} className="mt-12 flex justify-center">
+        <FadeIn delay={0.2} className="mt-16 flex justify-center">
           <Carousel
             opts={{ align: "start", loop: true }}
-            className="w-full max-w-sm sm:max-w-xl md:max-w-4xl lg:max-w-6xl"
+            className="w-full max-w-sm sm:max-w-2xl md:max-w-4xl"
           >
             <CarouselContent>
-              {testimonials.map((testimonial) => {
-                const avatarImage = images.find(img => img.id === `${testimonial.id}-avatar`);
-                const beforeImage = images.find(img => img.id === `${testimonial.id}-before`);
-                const afterImage = images.find(img => img.id === `${testimonial.id}-after`);
-
-                return (
-                  <CarouselItem key={testimonial.id} className="md:basis-1/1">
-                    <div className="p-1">
-                      <Card className="h-full overflow-hidden shadow-md">
-                        <CardContent className="grid md:grid-cols-2 items-center justify-center gap-8 p-6 md:p-10">
-                          <div className="flex flex-col justify-center space-y-4 text-center md:text-left">
-                            <Quote className="h-8 w-8 text-primary opacity-60" />
-                            <p className="text-lg italic text-foreground leading-relaxed">
-                              "{testimonial.quote}"
-                            </p>
-                            <div className="flex items-center justify-center md:justify-start gap-3 pt-2">
-                              <Avatar className="h-12 w-12 ring-2 ring-primary/30">
-                                {avatarImage && (
-                                  <AvatarImage
-                                    src={avatarImage.imageUrl}
-                                    alt={testimonial.name}
-                                    data-ai-hint={avatarImage.imageHint}
-                                  />
-                                )}
-                                <AvatarFallback>{testimonial.initials}</AvatarFallback>
-                              </Avatar>
-                              <span className="font-semibold text-lg">{testimonial.name}</span>
-                            </div>
+              {testimonials.map((testimonial) => (
+                <CarouselItem key={testimonial.id} className="md:basis-1/1">
+                  <div className="p-2 md:p-4">
+                    <Card className="h-full border-border/40 bg-card shadow-sm">
+                      <CardContent className="flex flex-col items-center justify-center gap-8 p-8 md:p-14 text-center">
+                        <Quote className="h-10 w-10 text-primary opacity-40" />
+                        <p className="font-headline text-2xl md:text-3xl italic leading-relaxed text-foreground">
+                          "{testimonial.quote}"
+                        </p>
+                        <div className="flex flex-col items-center justify-center gap-4 pt-4">
+                          <Avatar className="h-16 w-16 bg-muted text-muted-foreground">
+                            <AvatarFallback className="font-body text-lg font-bold">{testimonial.initials}</AvatarFallback>
+                          </Avatar>
+                          <div className="flex flex-col items-center space-y-1">
+                            <span className="font-body text-xl font-bold text-foreground">{testimonial.name}</span>
+                            <span className="font-body font-bold text-primary">{testimonial.result}</span>
                           </div>
-                          <div className="flex flex-col items-center gap-4">
-                            <div className="grid grid-cols-2 gap-4 w-full">
-                              {beforeImage && (
-                                <div className="relative aspect-[2/3] w-full overflow-hidden rounded-lg shadow-lg">
-                                  <Image
-                                    src={beforeImage.imageUrl}
-                                    alt={`Antes - ${testimonial.name}`}
-                                    fill
-                                    className="object-cover transition-transform duration-500 hover:scale-105"
-                                    data-ai-hint={beforeImage.imageHint}
-                                  />
-                                  <div className="absolute bottom-2 left-2 bg-black/50 text-white px-2 py-1 text-xs rounded-md">Antes</div>
-                                </div>
-                              )}
-                              {afterImage && (
-                                <div className="relative aspect-[2/3] w-full overflow-hidden rounded-lg shadow-lg">
-                                  <Image
-                                    src={afterImage.imageUrl}
-                                    alt={`Depois - ${testimonial.name}`}
-                                    fill
-                                    className="object-cover transition-transform duration-500 hover:scale-105"
-                                    data-ai-hint={afterImage.imageHint}
-                                  />
-                                  <div className="absolute bottom-2 left-2 bg-primary/80 text-primary-foreground px-2 py-1 text-xs rounded-md">Depois</div>
-                                </div>
-                              )}
-                            </div>
-                            <p className="font-semibold text-primary text-center mt-2">{testimonial.result}</p>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </CarouselItem>
-                );
-              })}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden sm:flex" />
-            <CarouselNext className="hidden sm:flex" />
+            <CarouselPrevious className="hidden sm:flex -left-12 bg-background border-border text-foreground hover:bg-accent" />
+            <CarouselNext className="hidden sm:flex -right-12 bg-background border-border text-foreground hover:bg-accent" />
           </Carousel>
         </FadeIn>
       </div>
