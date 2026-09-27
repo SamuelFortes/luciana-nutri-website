@@ -66,7 +66,7 @@ export function TestimonialsSection() {
                           </Avatar>
                           <div className="flex flex-col items-center space-y-1">
                             <span className="font-body text-xl font-bold text-foreground">{testimonial.name}</span>
-                            <span className="font-body font-bold text-primary">{testimonial.result}</span>
+                            <span className="font-body font-bold text-primary dark:text-[#FB923C]">{testimonial.result}</span>
                           </div>
                         </div>
                       </CardContent>
