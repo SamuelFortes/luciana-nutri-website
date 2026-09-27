@@ -13,13 +13,19 @@ export function AboutSection() {
       <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2 md:px-6">
         {/* Image — left, per the Z-pattern reversal from the Hero */}
         <FadeIn direction="left" className="relative mx-auto w-full max-w-md">
-          <div className="aspect-square overflow-hidden rounded-xl">
+          <div className="relative aspect-square overflow-hidden rounded-xl">
             <Image
               src="/images/about-luciana.jpg"
               alt="Luciana Soares trabalhando em seu consultório"
               width={800}
               height={800}
               className="h-full w-full object-cover"
+            />
+            {/* Same warm-wash treatment as the Hero, tuned lighter: unifies the two
+                photos' color temperature against the cooler tones of the source room. */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_40%,transparent_55%,hsl(var(--secondary)/0.35)_100%)]"
             />
           </div>
         </FadeIn>
