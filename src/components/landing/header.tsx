@@ -58,20 +58,20 @@ export function Header() {
           <LogoIcon className="h-7 w-7 text-primary" />
           <span className="font-headline">LucianaNutri</span>
         </Link>
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               prefetch={true}
-              className="group relative text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              className="group relative whitespace-nowrap text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
               {link.label}
               <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-primary transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="hidden items-center gap-4 lg:flex">
           <ThemeToggle />
           <Button asChild>
             <Link href={getWhatsAppLink(SCHEDULE_CONSULTATION_MESSAGE)} target="_blank" rel="noopener noreferrer">
@@ -79,7 +79,7 @@ export function Header() {
             </Link>
           </Button>
         </div>
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
