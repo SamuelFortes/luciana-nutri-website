@@ -9,7 +9,7 @@ export function EbookSection() {
   const ebookImage = PlaceHolderImages.find((img) => img.id === "ebook-cover");
 
   return (
-    <section id="ebook" className="relative z-0 w-full bg-primary py-20 md:py-28 lg:py-32">
+    <section id="ebook" className="relative z-0 w-full bg-primary py-20 dark:bg-[#7A3510] md:py-28 lg:py-32">
       <div className="container mx-auto grid items-center gap-12 px-4 md:grid-cols-2 md:px-6">
         {/* Mockup — left */}
         <FadeIn direction="right" className="relative mx-auto w-full max-w-sm">
@@ -20,7 +20,7 @@ export function EbookSection() {
             >
               <Image
                 src={ebookImage.imageUrl}
-                alt={ebookImage.description}
+                alt="Capa do e-book de nutrição de Luciana Soares"
                 width={600}
                 height={800}
                 className="h-full w-full object-cover"
@@ -31,18 +31,18 @@ export function EbookSection() {
         </FadeIn>
 
         {/* Pitch and price — right */}
-        <FadeIn direction="left" className="flex flex-col justify-center space-y-6 text-primary-foreground">
+        <FadeIn direction="left" className="flex flex-col justify-center space-y-6 text-primary-foreground dark:text-foreground">
           <div className="space-y-4">
-            <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
               Desvende os Segredos da Nutrição
             </h2>
-            <p className="max-w-[560px] font-body text-primary-foreground/85 md:text-lg">
+            <p className="max-w-[560px] font-body text-primary-foreground/85 dark:text-foreground/85 md:text-lg">
               Meu novo e-book é o guia definitivo para você transformar sua alimentação e alcançar seus objetivos de forma saudável e prazerosa. Chega de dietas restritivas!
             </p>
           </div>
 
           <div className="space-y-1">
-            <p className="font-body text-sm font-medium uppercase tracking-wide text-primary-foreground/85">
+            <p className="font-body text-sm font-medium uppercase tracking-wide text-primary-foreground/85 dark:text-foreground/85">
               Oferta Especial por Tempo Limitado
             </p>
             <p className="font-headline text-5xl font-bold md:text-6xl">Apenas R$ 49,90</p>
@@ -55,7 +55,7 @@ export function EbookSection() {
                 Adquirir Agora
               </Link>
             </Button>
-            <p className="mt-3 font-body text-xs text-primary-foreground/85">
+            <p className="mt-3 font-body text-xs text-primary-foreground/85 dark:text-foreground/85">
               O preço pode aumentar a qualquer momento.
             </p>
           </div>
