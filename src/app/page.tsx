@@ -10,27 +10,17 @@ import { Footer } from "@/components/landing/footer";
 
 export const revalidate = 3600;
 
-function Fade({ from, to }: { from: string; to: string }) {
-  return <div className={`h-28 bg-gradient-to-b ${from} ${to}`} aria-hidden />;
-}
-
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Header />
       <main className="flex-1">
         <HeroSection />
-        <Fade from="from-secondary" to="to-background" />
         <AboutSection />
-        <Fade from="from-background" to="to-secondary" />
         <ServicesSection />
-        <Fade from="from-secondary" to="to-background" />
         <TestimonialsSection />
-        <Fade from="from-background" to="to-secondary" />
         <TipsSection />
-        {/* Tips → Ebook: ambos bg-secondary, sem transição de cor */}
         <EbookSection />
-        <Fade from="from-secondary" to="to-background" />
         <ContactSection />
       </main>
       <Footer />
