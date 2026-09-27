@@ -1,31 +1,40 @@
 "use client";
 
-import { motion, useInView, type Variants } from "framer-motion";
+import { motion, useInView, useReducedMotion, type Variants } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
+const REVEAL_OFFSET = 12;
+const REVEAL_DURATION = 0.35;
+const REVEAL_EASE = [0.33, 1, 0.68, 1] as const;
+
 const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 48 },
+  hidden: { opacity: 0, y: REVEAL_OFFSET },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: REVEAL_DURATION, ease: REVEAL_EASE },
   },
 };
 
 const staggerContainerVariants: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.13 } },
+  visible: { transition: { staggerChildren: 0.08 } },
 };
 
 const staggerItemVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: REVEAL_OFFSET },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: REVEAL_DURATION, ease: REVEAL_EASE },
   },
 };
 
+/**
+ * Conteúdo nasce visível por padrão (SEO/crawlers/no-JS): `initial={false}` faz
+ * a Framer Motion renderizar já no estado final e só anima a progressão quando
+ * a seção entra na viewport. `prefers-reduced-motion` pula a animação inteira.
+ */
 export function FadeIn({
   children,
   delay = 0,
@@ -39,22 +48,27 @@ export function FadeIn({
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const shouldReduceMotion = useReducedMotion();
 
   const offsets = {
-    up: { y: 48, x: 0 },
-    left: { y: 0, x: -60 },
-    right: { y: 0, x: 60 },
+    up: { y: REVEAL_OFFSET, x: 0 },
+    left: { y: 0, x: -REVEAL_OFFSET },
+    right: { y: 0, x: REVEAL_OFFSET },
     none: { y: 0, x: 0 },
   };
 
   const { x, y } = offsets[direction];
 
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y, x }}
+      initial={false}
       animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y, x }}
-      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay }}
+      transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE, delay }}
       className={className}
     >
       {children}
@@ -73,15 +87,20 @@ export function StaggerContainer({
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
       ref={ref}
-      initial="hidden"
+      initial={false}
       animate={isInView ? "visible" : "hidden"}
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: 0.13, delayChildren: delay } },
+        visible: { transition: { staggerChildren: 0.08, delayChildren: delay } },
       }}
       className={className}
     >
@@ -97,8 +116,14 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
-    <motion.div variants={staggerItemVariants} className={className}>
+    <motion.div initial={false} variants={staggerItemVariants} className={className}>
       {children}
     </motion.div>
   );
@@ -111,6 +136,12 @@ export function FloatAnimation({
   children: ReactNode;
   className?: string;
 }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       animate={{ y: [0, -14, 0] }}
