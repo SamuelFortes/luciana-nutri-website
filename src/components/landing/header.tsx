@@ -41,8 +41,10 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-200",
-        isScrolled ? "bg-background/90 shadow-md backdrop-blur-md" : "bg-transparent"
+        "sticky top-0 z-50 w-full transition-colors duration-150",
+        isScrolled
+          ? "border-b border-foreground/10 bg-background/95 backdrop-blur-sm"
+          : "border-b border-transparent bg-transparent"
       )}
     >
       {/* Scroll progress bar */}
