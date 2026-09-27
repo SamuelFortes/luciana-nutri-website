@@ -7,34 +7,20 @@ const REVEAL_OFFSET = 12;
 const REVEAL_DURATION = 0.35;
 const REVEAL_EASE = [0.33, 1, 0.68, 1] as const;
 
-const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: REVEAL_OFFSET },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: REVEAL_DURATION, ease: REVEAL_EASE },
-  },
-};
-
-const staggerContainerVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-};
+/**
+ * Opacidade nunca é usada como portão de visibilidade: o valor de repouso (sem
+ * JS, no SSR, na primeira pintura) é sempre opacity 1. A única coisa que se
+ * anima é a posição (`x`/`y`), então o pior caso — JS desabilitado, crawler,
+ * `useInView`/`useReducedMotion` ainda não resolvidos no hidratamento — é
+ * conteúdo já visível no lugar final, nunca invisível.
+ */
+const restingTransform = { x: 0, y: 0 };
 
 const staggerItemVariants: Variants = {
-  hidden: { opacity: 0, y: REVEAL_OFFSET },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: REVEAL_DURATION, ease: REVEAL_EASE },
-  },
+  settled: { x: 0, y: 0, transition: { duration: REVEAL_DURATION, ease: REVEAL_EASE } },
+  offset: { x: 0, y: REVEAL_OFFSET },
 };
 
-/**
- * Conteúdo nasce visível por padrão (SEO/crawlers/no-JS): `initial={false}` faz
- * a Framer Motion renderizar já no estado final e só anima a progressão quando
- * a seção entra na viewport. `prefers-reduced-motion` pula a animação inteira.
- */
 export function FadeIn({
   children,
   delay = 0,
@@ -57,17 +43,17 @@ export function FadeIn({
     none: { y: 0, x: 0 },
   };
 
-  const { x, y } = offsets[direction];
-
-  if (shouldReduceMotion) {
+  if (shouldReduceMotion || direction === "none") {
     return <div className={className}>{children}</div>;
   }
+
+  const { x, y } = offsets[direction];
 
   return (
     <motion.div
       ref={ref}
-      initial={false}
-      animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y, x }}
+      initial={{ x, y }}
+      animate={isInView ? restingTransform : { x, y }}
       transition={{ duration: REVEAL_DURATION, ease: REVEAL_EASE, delay }}
       className={className}
     >
@@ -96,11 +82,10 @@ export function StaggerContainer({
   return (
     <motion.div
       ref={ref}
-      initial={false}
-      animate={isInView ? "visible" : "hidden"}
+      animate={isInView ? "settled" : "offset"}
       variants={{
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.08, delayChildren: delay } },
+        offset: {},
+        settled: { transition: { staggerChildren: 0.08, delayChildren: delay } },
       }}
       className={className}
     >
@@ -123,7 +108,7 @@ export function StaggerItem({
   }
 
   return (
-    <motion.div initial={false} variants={staggerItemVariants} className={className}>
+    <motion.div variants={staggerItemVariants} className={className}>
       {children}
     </motion.div>
   );
@@ -153,4 +138,4 @@ export function FloatAnimation({
   );
 }
 
-export { motion, fadeUpVariants, staggerContainerVariants, staggerItemVariants };
+export { motion, staggerItemVariants };
