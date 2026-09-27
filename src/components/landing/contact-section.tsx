@@ -13,11 +13,11 @@ const socialLinks = [
 
 export function ContactSection() {
   return (
-    <section id="contato" className="w-full bg-secondary py-20 md:py-32">
+    <section id="contato" className="w-full bg-secondary py-20 md:py-28 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
         <FadeIn className="mx-auto flex max-w-3xl flex-col items-center space-y-12 text-center">
           <div className="space-y-4">
-            <h2 className="font-headline text-3xl font-bold tracking-tighter md:text-5xl text-foreground">
+            <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">
               Entre em Contato
             </h2>
             <p className="font-body text-muted-foreground md:text-xl/relaxed">

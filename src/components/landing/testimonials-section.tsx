@@ -32,11 +32,11 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section id="depoimentos" className="w-full bg-secondary py-20 md:py-32">
+    <section id="depoimentos" className="w-full bg-secondary py-20 md:py-28 lg:py-32">
       <div className="container mx-auto px-4 md:px-6">
         <FadeIn className="flex flex-col items-center justify-center space-y-6 text-center">
           <div className="space-y-4">
-            <h2 className="font-headline text-3xl font-bold tracking-tighter md:text-5xl text-foreground">
+            <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">
               O que meus pacientes dizem
             </h2>
             <p className="max-w-[900px] mx-auto font-body text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
